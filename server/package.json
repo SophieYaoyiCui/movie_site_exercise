@@ -1,5 +1,5 @@
 {
-  "name": "assignment-5-rest-apis-sophieyaoyicui",
+  "name": "movie_site_exercise",
   "version": "1.0.0",
   "description": "The description of this assignment can be found in Canvas at [Assignment #5](https://canvas.harvard.edu/courses/35096/assignments/204793) (Spring 2018)",
   "main": "app.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HarvardDCENode/assignment-5-rest-apis-SophieYaoyiCui.git"
+    "url": "git+https://github.com/HarvardDCENode/movie_site_exercise.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/HarvardDCENode/assignment-5-rest-apis-SophieYaoyiCui/issues"
+    "url": "https://github.com/HarvardDCENode/movie_site_exercise/issues"
   },
-  "homepage": "https://github.com/HarvardDCENode/assignment-5-rest-apis-SophieYaoyiCui#readme",
+  "homepage": "https://github.com/HarvardDCENode/movie_site_exercise#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
     "connect-flash": "^0.1.1",

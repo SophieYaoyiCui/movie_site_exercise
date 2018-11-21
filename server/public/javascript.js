@@ -1,6 +1,7 @@
 'use strict';
 
-// Note: Better error handling should be implemented!
+// Note: this is an example I found from git, a different approach through AJEX, keep here as reference. 
+//Better error handling should be implemented!
 
 function displayMountain(mountain) {
     var mtnsDiv = document.getElementById('mtnsDiv');
