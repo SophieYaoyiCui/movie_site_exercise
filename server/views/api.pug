@@ -1,0 +1,44 @@
+
+html
+  head
+    title Testing the API
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css')
+  body.vsc-initialized
+    .container
+      h2 API Methods  
+        .row
+          .col-md-6.col-md-offset-3
+
+            .form-group
+              label(for='create') 
+              input#image.form-control(type='file', name='image')
+            button#create.btn.btn-primary(type='button') Create
+
+            .form-group
+              label(for='list') 
+            button#list.btn.btn-primary(type='button') List
+
+            p
+
+            .form-group
+              h5 Please input ID of the image:
+              label(for='imageid') 
+              input#imageid.form-control(type='text') 
+
+            .form-group
+              label(for='read') 
+            button#read.btn.btn-primary(type='button') Read
+
+            .form-group
+              label(for='update') 
+            button#update.btn.btn-primary(type='submit' ) Update
+
+            .form-group
+              label(for='delete') 
+            button#delete.btn.btn-primary(type='submit' ) Delete
+
+            .form-group
+              label(for='goback') 
+            a(class='btn btn-primary', href='../home') Go Back Home
+        
+    script(type='text/javascript', src='/static/api.js')

@@ -1,0 +1,18 @@
+.photo a {
+  text-decoration: none;
+  color: black;
+}
+
+.photo:hover {
+  background-color: #f4f4f4;
+}
+
+img {
+	height:150px;
+}
+
+.photo {
+	height:300px;
+	margin:0 auto;
+}
+

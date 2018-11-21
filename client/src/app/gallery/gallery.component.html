@@ -1,0 +1,29 @@
+<app-nav numPhotos = "{{numPhotos}}" totalVotes="{{totalVotes}}"></app-nav>
+
+	<main role="main">
+
+		<app-jumbotron title="{{title}}"> </app-jumbotron>
+
+		  <div class="row">
+		    <app-photo class="col-sm-3"
+		    	*ngFor='let photoObject of photoList' 
+		    	[photo]="photoObject" 
+		    	[baseUrl]="photoUrl" 
+		    	(upvotedEvent)="handleUpvoted($event)">
+		    </app-photo>
+		  </div>
+
+		<app-newphoto (newPhoto)="updatePhotoList()"></app-newphoto>
+
+		<div>
+			<a class="btn btn-link" href="{{photoUrl}}/home">Back To Home</a>
+		</div>
+
+	</main>
+
+<app-footer></app-footer>
+
+
+
+
+
