@@ -1,66 +1,57 @@
-var express = require('express');
-var path = require('path');
-var url = require('url');
-var bodyparser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-var flash = require('connect-flash');
-var mongoose = require('mongoose');
-//routing
-var photos = require('./routes/photos');
-var apiphotos = require('./routes/apiphotos');
-// app
-var app = express();
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const request = require('request');
+const path = require('path');
 
-//connect to database
-require('dotenv').config();
-mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PWD}@cluster0-shard-00-00-rjckr.mongodb.net:27017,cluster0-shard-00-01-rjckr.mongodb.net:27017,cluster0-shard-00-02-rjckr.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin`);
+// for session storage
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 //session recognition
-app.use(cookieParser('cscie31-secret'));
+app.use(cookieParser('movie-secret'));
 app.use(session({
-    secret: "cscie31",
+    secret: "movie",
     resave: "true",
     saveUninitialized: "true"
 }));
 
-//set views
+// this should be hideen in local variable
+const apikey = '89175477';
+// take from html input
+let moviename = 'Game of Thrones';
+//only use movie name for this exercise purpose
+const url = `http://www.omdbapi.com/?apikey=${apikey}&t=${moviename}`;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
+// view setting
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-// homepage provides entrance to API and HTML access
-app.get('/home', (req, res) => {
-    res.render('homepage');
-});
-// set a separate routing path to display html page from homepage, outside of the apiphotos logic
-app.get('/apipage', (req, res) => {
-    res.render('api');
-});
+app.get('/', function (req, res) {
+  res.render('index');
+})
 
-//set up middleware
-var urlencodedParser = bodyparser.urlencoded({ extended: false }); //true for more complexed data
-var jsonParser = bodyparser.json();
-//set routes
-app.use('/static', express.static(path.join(__dirname, 'public')));
-app.use('/express', urlencodedParser, photos);
-app.use('/apiphotos', jsonParser, apiphotos);
+app.post('/', function (req, res) {
+  res.render('index');
+  console.log(req.body.city);
+})
 
-//following will add angular routing properly
-//requires run this command from /client to generate dist folder to /server
-//ng build & rm -rf ../server/dist && cp -R dist ../server/
-app.use(express.static(path.join(__dirname, 'dist')));
-app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname, 'dist/index.html'));
+request(url, function (err, response, body) {
+  if(err){
+    console.log('error:', error);
+  } else {
+		let jsonBody = JSON.parse(body);
+		if(jsonBody.Poster){
+			let message = `The poster address is ${jsonBody.Poster}`;
+			console.log(message);
+		} else{
+			console.log('Poster does not exist!');
+		}
+  }
 });
 
-
-// use flash 
-app.use(flash());
-// catch any remaining routing errors
-app.use((req, res, next)=>{
-  var err = new Error('Not Found' + req.url);
-  err.status = 404;
-  next(err);
-});
-
-module.exports = app;
+app.listen(3000, function () {
+  console.log('listening on port 3000!')
+})
