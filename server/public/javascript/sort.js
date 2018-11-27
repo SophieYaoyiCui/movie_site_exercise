@@ -4,10 +4,12 @@
  * Currently two sorting fields are NOT used together and does not impact the results
  */
 
-const movieObjects = require('./movieObjects');
+sortMovie(){
+
+var movieObjects = require('./movieObjects');
 // get user choice
-const sortBy1 = documentGetElementById('sortBy1');
-const sortBy2 = documentGetElementById('sortBy2');
+var sortBy1 = documentGetElementById('sortBy1');
+var sortBy2 = documentGetElementById('sortBy2');
 
 // helper function
 // ascending
@@ -37,3 +39,4 @@ if(sortBy1){
 
 for(var j in movieObjects)
     document.writeln(movieObjects[j].movieTitle);
+}
