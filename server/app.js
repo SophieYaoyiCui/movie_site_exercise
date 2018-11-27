@@ -16,12 +16,7 @@ app.use(session({
     saveUninitialized: "true"
 }));
 
-// this should be hideen in local variable
-const apikey = '89175477';
-// take from html input
-let moviename = 'Game of Thrones';
-//only use movie name for this exercise purpose
-const url = `http://www.omdbapi.com/?apikey=${apikey}&t=${moviename}`;
+//const url = `http://www.omdbapi.com/?apikey=${apikey}&t=${moviename}`;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
@@ -29,15 +24,21 @@ app.use(express.static('public'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// connecting angular with express
+app.use('/', express.static('../client/dist'));
+
+// could delete since front is using angular
 app.get('/', function (req, res) {
   res.render('index');
 })
 
 app.post('/', function (req, res) {
   res.render('index');
-  console.log(req.body.city);
+  console.log(req.body.Title);
 })
 
+/*
+// error handling
 request(url, function (err, response, body) {
   if(err){
     console.log('error:', error);
@@ -50,8 +51,9 @@ request(url, function (err, response, body) {
 			console.log('Poster does not exist!');
 		}
   }
-});
+});*/
 
-app.listen(3000, function () {
-  console.log('listening on port 3000!')
+// start server
+app.listen(8080, function () {
+  console.log('listening on port 8080!')
 })

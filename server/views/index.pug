@@ -1,13 +1,41 @@
 extends layout
 
 block content
+  script(type='text/javascript', src='../public/javascript/sort.js')
   .main.container
     .row
       .col-md-6.col-md-offset-3
-        h2.display-4.m-b-2 Here they are:
-        .row
-        a(type='button', href='../apipage') God Father
-        .row
-        a(type='button', href='../express') Bat Man
-        .row
-        a(type='button', href='../gallery') Game of Thrones
+        p Here is the list of movies:
+        ul(style='list-style-type:disc')
+          li
+            a(href='../#movieTitle') God Father
+          li
+            a(href='../#movieTitle') Bat Man
+          li
+            a(href='../#movieTitle') Blade Runner
+          li
+            a(href='../#movieTitle') La La Land
+          li
+            a(href='../#movieTitle') Elibeth
+          li
+            a(href='../#movieTitle') The Lobster
+    .field
+      h4.label
+        span.label-text  First Sort By
+      select#sortby_1(id='sortBy1')
+        option(disabled='', selected='', value='')  
+        option(value='')  Release Date 
+        option(value='')  IMDB Rating 
+        option(value='')  Title 
+      h4.label
+        span.label-text  Second Sort By
+      select#sortby_2(id='sortBy2')
+        option(disabled='', selected='', value='')  
+        option(value='')  IMDB Rating 
+        option(value='')  Release Date 
+        option(value='')  Title 
+    div
+      a#sortButton.btn.btn-primary(href='', role='button', onclick='sortMovie()')  Sort 
+    div
+      a#backButton.btn.btn-primary(href='', role='button')  Go Back 
+

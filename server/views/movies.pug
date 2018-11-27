@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h4 Movies
+
+  .row
+    each movie in movies
+     .col-sm-4
+       p Title: #{movie.Title} | Year: #{movie.Year}
+       p Genre: #{movie.Genre}
+       img(src=movie.imageurl, width="250")
+       p 
