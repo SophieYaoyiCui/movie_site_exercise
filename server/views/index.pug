@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  script(type='text/javascript', src='../public/javascript/sort.js')
+  script(type='text/javascript', src='../static/javascript/sort.js')
   .main.container
     .row
       .col-md-6.col-md-offset-3
@@ -22,20 +22,23 @@ block content
     .field
       h4.label
         span.label-text  First Sort By
-      select#sortby_1(id='sortBy1')
+      select#sortby_1
         option(disabled='', selected='', value='')  
         option(value='')  Release Date 
         option(value='')  IMDB Rating 
         option(value='')  Title 
       h4.label
         span.label-text  Second Sort By
-      select#sortby_2(id='sortBy2')
+      select#sortby_2
         option(disabled='', selected='', value='')  
         option(value='')  IMDB Rating 
         option(value='')  Release Date 
         option(value='')  Title 
-    div
-      a#sortButton.btn.btn-primary(href='', role='button', onclick='sortMovie()')  Sort 
-    div
-      a#backButton.btn.btn-primary(href='', role='button')  Go Back 
 
+    .form-group
+      label(for='sort') 
+    button#sort.btn.btn-primary(type='button') Sort
+
+    .form-group
+      label(for='back') 
+    button#back.btn.btn-primary(type='button') Go Back
